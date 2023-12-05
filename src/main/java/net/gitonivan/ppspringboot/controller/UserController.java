@@ -1,6 +1,7 @@
 package net.gitonivan.ppspringboot.controller;
 
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import net.gitonivan.ppspringboot.model.User;
 import net.gitonivan.ppspringboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
 @Controller
 public class UserController {
 
     private UserService userService;
 
-
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    
 
     @GetMapping("/")
     public String index(ModelMap model) {
@@ -55,7 +53,7 @@ public class UserController {
     @PostMapping("/users/create")
     public String createUser(@ModelAttribute("userAdd") @Valid User addUser,
                              BindingResult bindingResult) {
-        if(bindingResult.hasErrors())
+        if (bindingResult.hasErrors())
             return "create";
 
         userService.addNewUser(addUser);
@@ -74,7 +72,7 @@ public class UserController {
     @PostMapping("/users/edit")
     public String updateUser(@ModelAttribute("userUpdate") @Valid User user,
                              BindingResult bindingResult) {
-        if(bindingResult.hasErrors())
+        if (bindingResult.hasErrors())
             return "edit";
         userService.updateUser(user.getId(), user);
 
