@@ -1,10 +1,11 @@
-package net.gitonivan.ppspringboot.service;
+package net.gitonivan.ppspringboot.repository;
+
 
 import net.gitonivan.ppspringboot.model.User;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserRepository {
     List<User> getUsersList();
 
     User getUserByID(long id);
